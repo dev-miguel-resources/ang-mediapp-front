@@ -7,20 +7,24 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './pages/login/login.component';
 import { PatientComponent } from './pages/patient/patient.component';
 import { MedicComponent } from './pages/medic/medic.component';
+import { PatientEditComponent } from './pages/patient/patient-edit/patient-edit.component';
+import { MaterialModule } from './material/material.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     PatientComponent,
-    MedicComponent
+    MedicComponent,
+    PatientEditComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MaterialModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
