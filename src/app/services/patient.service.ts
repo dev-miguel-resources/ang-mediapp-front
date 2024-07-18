@@ -15,4 +15,9 @@ export class PatientService {
     findAll() {
       return this.http.get<Patient[]>(this.url);
     }
+
+    findById(id: number){
+      return this.http.get<Patient>(`${this.url}/${id}`);
+    }
+
 }
