@@ -15,7 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
     AppComponent,
     LoginComponent,
     //PatientComponent,
-    MedicComponent,
+    //MedicComponent,
     //PatientEditComponent,
   ],
   imports: [

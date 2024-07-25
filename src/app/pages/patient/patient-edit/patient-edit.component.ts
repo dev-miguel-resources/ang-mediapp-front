@@ -10,6 +10,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { NgIf } from '@angular/common';
 import { PatientService } from 'src/app/services/patient.service';
 import { Patient } from 'src/app/models/patient';
+import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-patient-edit',
@@ -112,11 +113,25 @@ export class PatientEditComponent {
     if (this.isEdit) {
       // UPDATE
       // FORMA COMÚN PERO NO LA ÓPTIMA
-      this.patientService.update(this.id, patient).subscribe();
+      this.patientService.update(this.id, patient).subscribe(() => {
+        this.patientService.findAll().subscribe((data) => {
+          this.patientService.setPatientChange(data); // avisando al padre
+          this.patientService.setMessageChange('UPDATED'); // propagar el mensaje que hubo un cambio
+        });
+      });
     } else {
       // SAVE
       // FORMA ÓPTIMA
-      this.patientService.save(patient).subscribe();
+      this.patientService
+        .save(patient)
+        // switchMap: permite manejar subscripciones encadenadas, recupera la data proviniente del observable anterior y sobre ese resultado ir operando
+        // genera un proceso de optimización de memoria
+        .pipe(switchMap(() => this.patientService.findAll()))
+        // operadores de error: actualmente muchas de ellas ya están deprecadas y no es la forma correcta de hacerlas aquí
+        .subscribe((data) => {
+          this.patientService.setPatientChange(data); // avisando al padre
+          this.patientService.setMessageChange('CREATED'); // propagar el mensaje que hubo un cambio
+        });
     }
 
     // cerrar el form, navegamos al padre: patient page
