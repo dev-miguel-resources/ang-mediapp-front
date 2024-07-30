@@ -19,7 +19,7 @@ import { switchMap } from 'rxjs';
   styleUrls: ['./patient-edit.component.css'],
   imports: [MaterialModule, ReactiveFormsModule, RouterLink, NgIf],
 })
-export class PatientEditComponent {
+export class PatientEditComponent implements OnInit {
   form: FormGroup;
   id: number;
   isEdit: boolean;

@@ -6,12 +6,16 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Medic } from 'src/app/models/medic';
 import { MedicService } from 'src/app/services/medic.service';
+import { MedicDialogComponent } from './medic-dialog/medic-dialog.component';
+import { switchMap } from 'rxjs';
+import { MaterialModule } from 'src/app/material/material.module';
 
 @Component({
   selector: 'app-medic',
   standalone: true,
   templateUrl: './medic.component.html',
   styleUrls: ['./medic.component.css'],
+  imports: [MaterialModule],
 })
 export class MedicComponent {
   dataSource: MatTableDataSource<Medic>;
@@ -55,5 +59,24 @@ export class MedicComponent {
     this.dataSource = new MatTableDataSource(data);
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
+  }
+
+  openDialog(medic?: Medic) {
+    // pasar la referencia de la data
+    this._dialog.open(MedicDialogComponent, {
+      width: '350px',
+      data: medic,
+      disableClose: true,
+    });
+  }
+
+  delete(id: number) {
+    this.medicService
+      .delete(id)
+      .pipe(switchMap(() => this.medicService.findAll()))
+      .subscribe((data) => {
+        this.medicService.setmedicChange(data);
+        this.medicService.setMessageChange('DELETED!');
+      });
   }
 }

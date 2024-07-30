@@ -14,7 +14,7 @@ export class MedicService extends GenericService<Medic> {
   private messageChange: Subject<string> = new Subject<string>();
 
   constructor(protected override http: HttpClient) {
-    super(http, `${environment.HOST}/patients`);
+    super(http, `${environment.HOST}/medics`);
   }
 
   /*findAll() {
