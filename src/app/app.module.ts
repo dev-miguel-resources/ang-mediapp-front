@@ -9,6 +9,10 @@ import { MedicComponent } from './pages/medic/medic.component';
 //import { PatientEditComponent } from './pages/patient/patient-edit/patient-edit.component';
 import { MaterialModule } from './material/material.module';
 import { HttpClientModule } from '@angular/common/http';
+//import { ConsultAutocompleteComponent } from './pages/consult-autocomplete/consult-autocomplete.component';
+//import { SpecialtyEditComponent } from './pages/specialty/specialty-edit/specialty-edit.component';
+//import { SpecialtyComponent } from './pages/specialty/specialty.component';
+//import { LayoutComponent } from './pages/layout/layout.component';
 //import { ExamEditComponent } from './pages/exam/exam-edit/exam-edit.component';
 //import { ExamComponent } from './pages/exam/exam/exam.component';
 //import { MedicDialogComponent } from './pages/medic/medic-dialog/medic-dialog.component';
@@ -17,6 +21,10 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [
     AppComponent,
     LoginComponent,
+    //ConsultAutocompleteComponent,
+    //SpecialtyEditComponent,
+    //SpecialtyComponent,
+    //LayoutComponent,
     //ExamEditComponent,
     //ExamComponent,
     //MedicDialogComponent,

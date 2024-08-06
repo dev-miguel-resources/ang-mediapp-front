@@ -4,6 +4,9 @@ import { PatientEditComponent } from './patient/patient-edit/patient-edit.compon
 import { MedicComponent } from './medic/medic.component';
 import { ExamComponent } from './exam/exam/exam.component';
 import { ExamEditComponent } from './exam/exam-edit/exam-edit.component';
+import { SpecialtyComponent } from './specialty/specialty.component';
+import { SpecialtyEditComponent } from './specialty/specialty-edit/specialty-edit.component';
+import { ConsultAutocompleteComponent } from './consult-autocomplete/consult-autocomplete.component';
 
 export const PagesRoutes: Routes = [
   {
@@ -29,4 +32,13 @@ export const PagesRoutes: Routes = [
       { path: 'edit/:id', component: ExamEditComponent },
     ],
   },
+  {
+    path: 'specialty',
+    component: SpecialtyComponent,
+    children: [
+      { path: 'new', component: SpecialtyEditComponent },
+      { path: 'edit/:id', component: SpecialtyEditComponent },
+    ],
+  },
+  { path: 'consult-autocomplete', component: ConsultAutocompleteComponent },
 ];
