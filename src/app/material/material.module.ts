@@ -15,9 +15,15 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatListModule } from '@angular/material/list';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import {
+  DateAdapter,
+  MAT_DATE_LOCALE,
+  MatNativeDateModule,
+} from '@angular/material/core';
+import { CustomDateAdapter } from './custom-adapter';
 
 @NgModule({
   declarations: [],
@@ -41,7 +47,11 @@ import { MatListModule } from '@angular/material/list';
     MatDatepickerModule,
     MatExpansionModule,
     MatListModule,
+    MatNativeDateModule,
   ],
-  providers: [],
+  providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'es-ES' }, // definir el locale del calendario en un cierto idioma: español
+    { provide: DateAdapter, useClass: CustomDateAdapter }, // proveer la lógica personalizada al calendario
+  ],
 })
 export class MaterialModule {}
