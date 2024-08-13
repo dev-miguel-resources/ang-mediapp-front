@@ -24,6 +24,10 @@ import {
   MatNativeDateModule,
 } from '@angular/material/core';
 import { CustomDateAdapter } from './custom-adapter';
+import { MatCardModule } from '@angular/material/card';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatStepperModule } from '@angular/material/stepper';
 
 @NgModule({
   declarations: [],
@@ -48,6 +52,10 @@ import { CustomDateAdapter } from './custom-adapter';
     MatExpansionModule,
     MatListModule,
     MatNativeDateModule,
+    MatCardModule,
+    MatStepperModule,
+    MatGridListModule,
+    MatTabsModule,
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'es-ES' }, // definir el locale del calendario en un cierto idioma: español

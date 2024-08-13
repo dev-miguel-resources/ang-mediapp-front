@@ -7,6 +7,9 @@ import { ExamEditComponent } from './exam/exam-edit/exam-edit.component';
 import { SpecialtyComponent } from './specialty/specialty.component';
 import { SpecialtyEditComponent } from './specialty/specialty-edit/specialty-edit.component';
 import { ConsultAutocompleteComponent } from './consult-autocomplete/consult-autocomplete.component';
+import { ConsultWizardComponent } from './consult-wizard/consult-wizard.component';
+import { SearchComponent } from './search/search.component';
+import { ReportComponent } from './report/report.component';
 
 export const PagesRoutes: Routes = [
   {
@@ -41,4 +44,7 @@ export const PagesRoutes: Routes = [
     ],
   },
   { path: 'consult-autocomplete', component: ConsultAutocompleteComponent },
+  { path: 'consult-wizard', component: ConsultWizardComponent },
+  { path: 'search', component: SearchComponent },
+  { path: 'report', component: ReportComponent },
 ];

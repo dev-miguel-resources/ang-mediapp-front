@@ -38,7 +38,7 @@ export class ConsultAutocompleteComponent implements OnInit {
   medics: Medic[];
   specialties: Specialty[];
   exams: Exam[];
-  medicControl: FormControl = new FormControl();
+  medicControl: FormControl = new FormControl('', [Validators.required]);
   details: ConsultDetail[] = [];
   examsSelected: Exam[] = [];
   minDate: Date = new Date(); // definir la fecha mínima con la que empieza el calendario
