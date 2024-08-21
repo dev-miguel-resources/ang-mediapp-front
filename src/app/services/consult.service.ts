@@ -34,4 +34,34 @@ export class ConsultService {
       `${this.url}/search/dates?date1=${date1}&date2=${date2}`
     );
   }
+
+  getExamsByIdConsult(idConsult: number) {
+    return this.http.get<any>(`${environment.HOST}/consultexams/${idConsult}`);
+  }
+
+  // REPORTS
+  callProcedureOrFunction() {
+    return this.http.get<any>(`${this.url}/callProcedureNative`);
+  }
+
+  // blob: es un tipo especifico para procesamiento óptimo de archivos: imágenes, pdfs, excel, etc...
+  generateReport() {
+    return this.http.get(`${this.url}/generateReport`, {
+      responseType: 'blob',
+    });
+  }
+
+  // Files, images
+  saveFile(data: File) {
+    const formData: FormData = new FormData();
+    formData.append('file', data);
+
+    return this.http.post(`${this.url}/saveFile`, formData);
+  }
+
+  readFile(id: number) {
+    return this.http.get(`${this.url}/readFile/${id}`, {
+      responseType: 'blob',
+    });
+  }
 }
