@@ -29,14 +29,21 @@ export class PatientComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
+  totalElements: number = 0;
+
   constructor(
     private patientService: PatientService,
     private _snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
-    this.patientService.findAll().subscribe((data) => {
+    /*this.patientService.findAll().subscribe((data) => {
       this.createTable(data);
+    });*/
+
+    this.patientService.listPageable(0, 2).subscribe((data) => {
+      this.totalElements = data.totalElements;
+      this.createTable(data.content);
     });
 
     // reflejar los cambios reactivos
@@ -56,7 +63,6 @@ export class PatientComponent implements OnInit {
   createTable(data: Patient[]) {
     this.dataSource = new MatTableDataSource(data);
     this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
   }
 
   delete(idPatient: number) {
@@ -72,5 +78,14 @@ export class PatientComponent implements OnInit {
   applyFilter(e: Event) {
     const inputElement = e.target as HTMLInputElement;
     this.dataSource.filter = inputElement.value.trim();
+  }
+
+  showMore(e: any) {
+    this.patientService
+      .listPageable(e.pageIndex, e.pageSize)
+      .subscribe((data) => {
+        this.totalElements = data.totalElements;
+        this.createTable(data.content);
+      });
   }
 }

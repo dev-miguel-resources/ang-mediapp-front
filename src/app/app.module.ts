@@ -3,9 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LoginComponent } from './login/login.component';
+//import { LoginComponent } from './login/login.component';
 //import { PatientComponent } from './pages/patient/patient.component';
-import { MedicComponent } from './pages/medic/medic.component';
+//import { MedicComponent } from './pages/medic/medic.component';
 //import { PatientEditComponent } from './pages/patient/patient-edit/patient-edit.component';
 import { MaterialModule } from './material/material.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -19,11 +19,17 @@ import { HttpClientModule } from '@angular/common/http';
 //import { ExamEditComponent } from './pages/exam/exam-edit/exam-edit.component';
 //import { ExamComponent } from './pages/exam/exam/exam.component';
 //import { MedicDialogComponent } from './pages/medic/medic-dialog/medic-dialog.component';
+import { JwtModule } from '@auth0/angular-jwt';
+import { environment } from 'src/environments/environment.development';
+
+export function tokenGetter() {
+  return sessionStorage.getItem(environment.TOKEN_NAME);
+}
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
+    //LoginComponent,
     //ReportComponent,
     //SearchComponent,
     //SearchDialogComponent,
@@ -44,6 +50,13 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     HttpClientModule,
     MaterialModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ['localhost:8080'],
+        disallowedRoutes: ['http://localhost:8080/login/forget'],
+      },
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],
