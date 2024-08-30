@@ -26,7 +26,8 @@ export class LoginComponent {
   login() {
     this.loginService.login(this.username, this.password).subscribe((data) => {
       sessionStorage.setItem(environment.TOKEN_NAME, data.jwtToken);
-      this.router.navigate(['pages/patient']);
+      //this.router.navigate(['pages/patient']);
+      this.router.navigate(['pages/dashboard']);
     });
   }
 
